@@ -1,0 +1,15 @@
+{
+    "label.name": "Full Name",
+    "label.startDate": "Check-in",
+    "label.endDate": "Check-out",
+    "label.adultGuest": "Adults number",
+    "label.childGuest": "Child number",
+    "label.email" : "Email",
+    "label.phone" : "Phone",
+    "label.arrivalTime" : "Estimated time of arrival",
+    "label.calendar" :"Availability Calendar",
+    "label.price": "Price",
+    "label.details" : "Booking information",
+    "label.close" : "Close",
+    "label.save" : "Book"
+}

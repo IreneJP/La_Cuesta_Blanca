@@ -1,0 +1,99 @@
+body{
+    background-color: #EDF0F2;
+}
+h1{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 5vw;
+    text-align: center;
+    color:#262626;
+    padding: 5% 0 3% 0;
+}
+
+.rows{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 6%;
+    margin: 0 7% 0 7%;
+}
+
+#myCarousel{
+    width: 100%;
+    display: block;
+    margin: auto auto auto auto;
+}
+
+
+h6{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 1.5vw;
+    margin: 5% 0 2% 0;
+    text-align: center;
+    color:#FF914D;
+}
+
+.rows1{
+    display: grid;
+    grid-template-columns: 21% 70%;
+    grid-gap: 10%;
+    margin: 5%;
+}
+
+.description p {
+ font-size: 1vw;
+ text-align: justify;
+}
+
+.downstars{
+    padding:7%;
+    border: solid #FFC082 1px; 
+    background-color: rgba(255, 255, 255, 0.39);
+}
+
+.bedrooms{
+    display: grid;
+    grid-template-columns: 27% 27% 27%;
+    grid-gap: 9%;
+    padding:2%;
+    background-color: rgba(255, 255, 255, 0.39);
+    border: solid #ff883e 1px; 
+}
+
+h4{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 2vw;
+    margin: 0 0 0 0;
+    text-align: center;
+    color:  rgba(0, 0, 0, 0.808);
+}
+
+.bedroom{
+    width: 100%;
+}
+
+.bedroom img{
+    width: 100%;
+    margin: 0;
+    display: block;
+    margin: auto auto auto auto;
+}
+
+.services{
+    padding:3% 3% 10% 3%;
+    margin: 2% 0% 0% 10%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 9%;
+    font-size: 1.5vw;
+}
+
+svg{
+    width: 6% ;
+}
+
+#Capa_1{
+    width: 4% ;
+}
+
+#Capa_2{
+    width: 5% ;
+}

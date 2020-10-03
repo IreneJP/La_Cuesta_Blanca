@@ -1,0 +1,68 @@
+body{
+    margin-top: 0;
+    background-color: #EDF0F2;
+    padding-bottom: 10%;
+}
+
+h1{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 5vw;
+    text-align: center;
+    color:#0DB5CF;
+    padding: 5% 0 3% 0;
+    text-shadow: black 0.5px 0.5px 0.5px;
+}
+
+.garage{
+    display: grid;
+    grid-template-columns: 60% 35%;
+    grid-gap: 5%;
+    margin: auto auto auto  auto;
+    width: 60%;
+    text-align: justify;
+    font-size: 1vw;
+}
+
+.garage img{
+    width: 100%;
+}
+
+.arrive{
+    padding-top: 7%;
+    display: grid;
+    grid-template-columns: 35% 60%;
+    grid-gap: 5%;
+    margin: auto auto auto  auto;
+    width: 60%;
+    text-align: justify;
+    font-size: 1vw;
+}
+
+.arrive iframe{
+    width: 100%;
+    height: 100%;
+}
+
+
+h6{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 1.5vw;
+    margin: 5% 0 2% 0;
+    text-align: center;
+    color:#FF914D;
+}
+
+.description {
+    padding-top: 7%;
+    width: 60%;
+    margin: auto auto auto  auto;
+    text-align: justify;
+    font-size: 1vw;
+}
+
+#myCarousel{
+    width: 90%;
+    margin: 5% auto auto  auto;
+}
+
+

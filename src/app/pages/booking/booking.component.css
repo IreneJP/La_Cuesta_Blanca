@@ -1,0 +1,53 @@
+body{
+    grid-template-columns: auto auto;
+    width: 100%;
+    padding: 0% 20% 3% 20%; 
+    background-color: white;
+}
+
+label{
+    font-size: 0.8vw;
+}
+
+form{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 2%;
+}
+
+.guests{
+    display: grid;
+    grid-template-columns:  10% 10% 68%;
+    grid-gap: 6%;
+    width: 100%;
+}
+
+p-calendar{
+    align-items: center;
+    align-content: center;
+}
+
+.part2{
+margin: auto auto auto auto
+}
+
+h1{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 5vw;
+    text-align: center;
+    color:#262626;
+    padding: 8% 0 3% 0;
+}
+
+.booking{
+    display: grid;
+    grid-template-columns:  auto auto;
+    grid-gap: 6%;
+    width: 100%;
+    margin-top: 1%;
+}
+
+
+button{
+    width: 100%;
+}

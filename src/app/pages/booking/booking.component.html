@@ -1,0 +1,138 @@
+<app-nav-bar></app-nav-bar>
+
+<body>
+    <h1>Reservas</h1>
+    <div class="row" id="add-booking">
+        <div class="col-12">
+            <form [formGroup] = "formBooking" (ngSubmit)="addBooking()">
+            <div class="part1">
+                <div class="row form-group">
+                    <div class="col-12 mt-2">
+                        <label for="fullName">{{'label.name' | translate}}</label>
+                        <input type="text" id="fullName" class="form-control" formControlName="fullName" [ngClass]="{'is-valid': fullName.dirty && !fullName.invalid, 'is-invalid': fullName.dirty && fullName.invalid}">
+                    </div>
+                    <div class="invalid-feedback">
+                        <span *ngIf="fullName.errors?.required">Campo requerido</span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-12 mt-2">
+                        <label for="email">{{'label.email' | translate}}</label>
+                        <input type="email" class="form-control" formControlName="email" [ngClass]="{'is-valid': email.dirty && !email.invalid, 'is-invalid': email.touched && email.invalid}">
+                    </div>
+                    <div class="invalid-feedback">
+                        <span *ngIf="email.errors?.required">Campo requerido</span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-12 mt-2">
+                        <label for="phone">{{'label.phone' | translate}}</label>
+                        <input type="number"  id="phone" class="form-control" formControlName="phone" [ngClass]="{'is-valid': phone.dirty && !phone.invalid, 'is-invalid': phone.touched && phone.invalid}">
+                    </div>
+                    <div class="invalid-feedback">
+                        <span *ngIf="phone.errors?.required">Campo requerido</span>
+                    </div>
+                </div>
+                <div class="guests">
+                    <div class="row form-group">
+                        <div class="col-12 mt-2">
+                            <label for="adultsNumber">{{'label.adultGuest' | translate}}</label>
+                            <select  id="adultsNumber" class="custom-select" formControlName="adultsNumber">
+                                <option [value]="option" *ngFor= "let option of adultsOptions;">{{option}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-12 mt-2">
+                            <label for="childrenNumber">{{'label.childGuest' | translate}}</label>
+                            <select  id="childrenNumber" class="custom-select" formControlName="childrenNumber">
+                                <option [value]="option" *ngFor= "let option of childrenOptions;">{{option}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-12 mt-2">
+                            <label for="arrivalTime">{{'label.arrivalTime' | translate}}</label>
+                            <input type="text"  id="arrivalTime" class="form-control" formControlName="arrivalTime">
+                        </div>
+                    </div>
+                </div>
+                <div class="booking">
+                    <div>
+                        <label for="price" id="price">{{'label.price' | translate}}: {{price}} <i class="fas fa-euro-sign"></i></label>
+                    </div>
+                    <div>
+                        <div class="button">
+                            <button [disabled]="formBooking.invalid" class="btn btn-dark" type="submit">{{'label.save' | translate}}</button>
+                        </div>
+                    </div>
+               </div>
+            </div>
+            
+
+            <div class="part2">
+                <div class="row form-group">
+                    <div class="col-12 mt-2">
+                        <label for="date">{{'label.calendar' | translate}}</label>
+                        <br>
+                        <p-calendar  
+                            (click)="calculatePrice()"
+                            inline = "true"
+                            yearRange="2020:2021"
+                            [locale]="locale" 
+                            dateFormat="dd/mm/yy" 
+                            [readonlyInput] = "true"
+                            [disabledDates]= "nuevoArray"
+                            inputStyleClass="form-control is-valid"
+                            selectionMode = "range"
+                            id="date"
+                            [minDate] = "today"
+                            formControlName="date">                    
+                        </p-calendar>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    
+ <!--
+    <ng-template #irene let-modal>
+       
+        <div class="modal-header">
+            <h5 class="modal-title">{{'label.details'| translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)= "modal.dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div> 
+        <div class="modal-body">
+           <p>{{'label.name' | translate}}: {{this.formBooking.value.fullName}}</p>
+           <p>{{'label.email' | translate}}: {{this.formBooking.value.email}}</p>
+           <p>{{'label.phone' | translate}}: {{this.formBooking.value.phone}}</p>
+           <p>{{'label.adultsNumber' | translate}}: {{this.formBooking.value.adultsNumber}}</p>
+           <p>{{'label.childrenNumber' | translate}}: {{this.formBooking.value.childrenNumber}}</p>
+           <p>{{'label.startDate' | translate}}: {{this.formBooking.value.date[0]}}</p>
+           <p>{{'label.endDate' | translate}}: {{this.formBooking.value.date[1]}}</p>
+           <p>{{'label.arrivalTime' | translate}}: {{this.formBooking.value.arrivalTime}}</p>
+           <p>{{'label.price' | translate}}: {{price}}</p>
+        </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'label.close'| translate}} </button>
+            <button type="button" class="btn btn-primary">{{'label.save'| translate}}</button>
+        </div>            
+    </ng-template> -->  
+</body>
+<app-footer></app-footer>
+
+<ng-template #modal_success let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click) = "modal.dismiss()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <div class="modal-body">
+        Body
+    </div>
+</ng-template>

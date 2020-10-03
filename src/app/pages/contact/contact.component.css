@@ -1,0 +1,43 @@
+img{
+    filter: grayscale(100%);
+    position: absolute;
+    right: 0px;
+    width: 76%;
+}
+
+.background{
+background-color: #262626;
+width: 50%;
+height: auto;
+position: absolute;
+top:5%;
+padding-bottom: 5%;
+}
+
+h1{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 4.5vw;
+    text-align: center;
+    color:white;
+    padding: 5%;
+    text-shadow: black 1px 1px 2px; 
+}
+
+h6{
+    font-family: 'Londrina Solid', cursive;
+    font-size: 2vw;
+    margin: 5% 0 2% 0;
+    text-align: center;
+    color:#f89c6e;
+}
+
+p{
+    color: white;
+    font-size: 1.5vw;
+}
+
+.info{
+   margin: 0 25% 0 25%;
+   text-align: center;
+   padding-bottom: 5%;
+}

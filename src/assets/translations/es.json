@@ -1,0 +1,16 @@
+{
+   "label.name": "Nombre completo",
+   "label.startDate": "Fecha de entrada",
+   "label.endDate": "Fecha de salida",
+   "label.adultGuest": "Adultos",
+   "label.childGuest": "Niñ@s",
+   "label.email" : "Email",
+   "label.phone" : "Teléfono de contacto",
+   "label.arrivalTime" : "Hora aproximada de llegada",
+   "label.calendar" :"Seleccione las fechas de la reserva",
+   "label.price": "Precio",
+   "label.details" : "Información de la reserva",
+   "label.close" : "Cerrar",
+   "label.save" : "Reservar"
+
+}

@@ -1,0 +1,60 @@
+.foot{
+    border: solid;
+    background-color: #6BCEDD;
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 20%;
+    height: 10%;
+    padding: 0.5% 15% 0 4%;
+    border: solid 0.1px rgba(119, 113, 113, 0.377)
+}
+
+h1{
+    font-size: 0.8vw;
+}
+
+.iLinks{
+    margin-left:0;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-gap: 0%;
+    font-size: 0.7vw;
+}
+
+.iLinks img {
+    margin-left: 0;
+    width:60%;
+    border-radius: 5%;
+}
+
+.find{
+    width:100%;
+}
+
+.find a{
+    padding-right: 1%;
+}
+
+svg{
+    padding-top: 2%;
+    width: 7%;
+}
+
+img{
+    padding-top: 2%;
+    width: 7%;
+    height: auto;
+    border-radius: 26%;
+}
+
+.tanglere a{
+    padding-left: 3%;
+    padding-right: 5%;
+}
+
+.tanglere svg {
+    width: 5%;
+}
