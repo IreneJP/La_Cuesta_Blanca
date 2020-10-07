@@ -1,38 +1,31 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ViewChild, } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup,  Validators } from '@angular/forms';
 import { Reservation } from 'src/app/models/reservation';
-import { Dates} from 'src/app/models/dates';
 import { BookingService } from 'src/app/shared/booking.service';
-import { map } from 'rxjs/internal/operators'
 import * as _ from 'lodash';
-import { isConstructorDeclaration } from 'typescript';
+import { find } from 'lodash-es';
+
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.css']
+  styleUrls: ['./booking.component.css'], 
 })
 export class BookingComponent implements OnInit {
-
-    @ViewChild('modal_success', {static: false}) modal_success;
-
+  
   public adultsOptions: number[];
   public childrenOptions: number[];
   public locale: any;
   public today: Date;
   public formBooking: FormGroup;
   public price: any;
-  public previousBookings: any
-  public start: Date;
-  public end :Date ;
-  public startDate;
-  public endDate;
   public bookings
-  public nuevoArray: Date[]
+  public nuevoArray:Date[]
+  public entrada:Date
+  public salida:Date
  
-  constructor(private formBuilder: FormBuilder, private bookingService: BookingService,  private modalService: NgbModal) {
+ 
+  constructor(private formBuilder: FormBuilder, private bookingService: BookingService) {
     
     this.adultsOptions = [1, 2, 3, 4, 5, 6, 7, 8]
     this.childrenOptions = [0, 1, 2, 3, 4, 5, 6, 7]
@@ -86,11 +79,11 @@ export class BookingComponent implements OnInit {
     }
     return arr;
 };
-
+/*
   getBooking(){
     let entrada
     let salida
-    let suma
+    let lodash = require("lodash")
     
     this.bookingService.getBooking().subscribe((data:any[]) =>{
       //console.log(data)
@@ -103,22 +96,43 @@ export class BookingComponent implements OnInit {
       //this.bookings = [entrada,salida]
       //console.log("bookings",this.bookings)
 
-      function getDaysArray(entrada, salida) {
-        for(var arr=[],dt=new Date(entrada); dt<=salida; dt.setDate(dt.getDate()+1)){
-            arr.push(new Date(dt));
+        function getDaysArray(entrada, salida) {
+          for(var arr=[],dt=new Date(entrada); dt<=salida; dt.setDate(dt.getDate()+1)){
+              arr.push(new Date(dt));
+          }
+          return arr;
         }
-        return arr;
-      }
+        this.nuevoArray = lodash.concat(getDaysArray(entrada,salida),getDaysArray(entrada,salida)); 
+        this.nuevoArray = lodash.concat(getDaysArray(entrada,salida))
+        console.log("1", lodash.concat(getDaysArray(entrada,salida),getDaysArray(entrada,salida)))
+        console.log("2",lodash.concat(getDaysArray(entrada,salida)))  
+          }
+      }) 
+          
+    }*/
+    getBooking(){
       
-       this.nuevoArray = getDaysArray(entrada,salida)
-      console.log("suma",this.nuevoArray)   
-
-      };
+      let suma =  new Array
+      
+      this.bookingService.getBooking().subscribe((data:any[]) =>{
+        console.log(data)
+        for(let i= 0; i<= data.length; i++ ){
+       this.entrada = new Date(data[i].startDate)
+        this.salida = new Date(data[i].endDate)
    
-      })   
+        function getDaysArray(entrada, salida) {
+          for(var arr=[],dt=new Date(entrada); dt<=salida; dt.setDate(dt.getDate()+1)){
+              arr.push(new Date(dt));
+          }
+          return arr;
+        }
+                };
      
+        })   
+       
+   console.log(this.entrada,this.salida)
+      }
 
-    }
    
   calculatePrice(){
     let start = this.formBooking.value.date[0].getDate()
@@ -147,13 +161,14 @@ export class BookingComponent implements OnInit {
 
   addBooking(){
     let booking = new Reservation(this.formBooking.value.fullName, this.formBooking.value.email, this.formBooking.value.phone, this.formBooking.value.adultsNumber, this.formBooking.value.childrenNumber, this.formBooking.value.date[0], this.formBooking.value.date[1], this.price, this.formBooking.value.arrivalTime)
+    
 
-
-      /*this.bookingService.addBooking(booking).subscribe((data) =>{
+      this.bookingService.addBooking(booking).subscribe((data) =>{
+        
         console.log("Reserva realizada con la siguiente info " + data)
-      })*/
-   
+      })      
   }
+
 
   get fullName(){
     return this.formBooking.get('fullName')

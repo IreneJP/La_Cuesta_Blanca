@@ -15,11 +15,6 @@ export class BookingService {
     return this.http.get(this.url)
   }
 
-  getNotAvailableDates(){
-    return this.http.get(this.url + "/notAvailableDates")
-  }
-
-
   addBooking(booking:Reservation){
     return this.http.post(this.url, booking)
   }
