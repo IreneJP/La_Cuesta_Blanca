@@ -1,8 +1,8 @@
 body{
-    background-color: #EDF0F2;
+    background-color: white;
 }
 h1{
-    font-family: 'Londrina Solid', cursive;
+    /*font-family: 'Londrina Solid', cursive;*/
     font-size: 5vw;
     text-align: center;
     color:#262626;
@@ -24,7 +24,7 @@ h1{
 
 
 h6{
-    font-family: 'Londrina Solid', cursive;
+   /*font-family: 'Londrina Solid', cursive;*/
     font-size: 1.5vw;
     margin: 5% 0 2% 0;
     text-align: center;
@@ -44,9 +44,9 @@ h6{
 }
 
 .downstars{
-    padding:7%;
-    border: solid #FFC082 1px; 
+    border: solid #ff883e 1px; 
     background-color: rgba(255, 255, 255, 0.39);
+    padding:7%;
 }
 
 .bedrooms{
@@ -59,7 +59,7 @@ h6{
 }
 
 h4{
-    font-family: 'Londrina Solid', cursive;
+    /*font-family: 'Londrina Solid', cursive;*/
     font-size: 2vw;
     margin: 0 0 0 0;
     text-align: center;
@@ -97,3 +97,87 @@ svg{
 #Capa_2{
     width: 5% ;
 }
+.theRooms{
+    background-color:  #2626262f;
+    padding-bottom: 5%;
+}
+
+.theHouse{
+    padding-top: 2%;
+    background-color:#262626;
+    padding-bottom: 5%;
+    color: white;
+}
+
+.theHouse h1{
+    color: white;
+}
+
+.theHouse img{
+ border: solid 1px white;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .rows{
+        grid-template-columns: auto ;
+    }
+    #myCarousel, #myCarousel2,#myCarousel3{
+        width: 80%;
+        display: block;
+        margin: auto auto auto auto;
+    }
+
+    .description p {
+        font-size: 3vw;;
+        text-align: left;
+        width: 80%;
+        margin: auto auto auto auto;
+       }
+
+    h1{
+        font-size: 6vw;
+        padding-top: 15%;
+    }
+
+    h6,h4{
+        font-size: 4vw;
+    }
+
+    .theHouse{
+        padding-bottom: 40%;
+    }
+
+    .rows1{
+        grid-template-columns:auto;
+    }
+
+    .downstars{
+        width: 35%;
+        margin: auto auto auto auto;
+        padding:0 3% 2% 3%;
+    }
+
+    .theRooms{
+        padding-bottom: 15%;
+    }
+
+    .theServices{
+        padding-bottom: 10%;
+    }
+
+    .theServices p{
+       padding-top: 0 !important;
+       margin-top: 0 !important;
+    }
+
+    .services{
+        grid-template-columns: auto;
+        grid-gap: 0;
+        font-size: 3.5vw;
+        text-align: left;
+        margin-bottom: 0%;
+    }
+
+
+  }

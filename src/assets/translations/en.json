@@ -2,8 +2,8 @@
     "label.name": "Full Name",
     "label.startDate": "Check-in",
     "label.endDate": "Check-out",
-    "label.adultGuest": "Adults number",
-    "label.childGuest": "Child number",
+    "label.adultGuest": "Adults",
+    "label.childGuest": "Children",
     "label.email" : "Email",
     "label.phone" : "Phone",
     "label.arrivalTime" : "Estimated time of arrival",
@@ -11,5 +11,8 @@
     "label.price": "Price",
     "label.details" : "Booking information",
     "label.close" : "Close",
-    "label.save" : "Book"
+    "label.save" : "Book",
+    "label.confirmation" : "Confirm the booking",
+    "label.choosePayment" : "Choose the payment method",
+    "label.creditCard" : "Credit Card"
 }

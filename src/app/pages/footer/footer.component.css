@@ -1,60 +1,157 @@
-.foot{
+/*.foot{
     border: solid;
     background-color: #6BCEDD;
     position: fixed;
-    width: 100%;
     bottom: 0%;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-gap: 20%;
-    height: 10%;
-    padding: 0.5% 15% 0 4%;
-    border: solid 0.1px rgba(119, 113, 113, 0.377)
+    grid-template-columns: 25% 32% 8%;
+    grid-gap: 14%;
+    height: 7.5%;
+    width: 100%;
+    padding: 0.2% 0% 0 7%;
+    margin: 0 0 0 0;
+    border: solid 0.1px rgba(119, 113, 113, 0.377);
 }
 
 h1{
     font-size: 0.8vw;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold
 }
 
 .iLinks{
-    margin-left:0;
+    margin: auto auto 0 auto;
     display: grid;
-    grid-template-columns: 20% 80%;
-    grid-gap: 0%;
+    grid-template-columns: 10% 80%;
+    grid-gap: 5%;
     font-size: 0.7vw;
+    margin-bottom: 0;
+    align-items: center;
 }
 
 .iLinks img {
     margin-left: 0;
-    width:60%;
+    width:100%;
     border-radius: 5%;
 }
 
 .find{
-    width:100%;
+    margin: auto auto auto auto;
 }
 
 .find a{
-    padding-right: 1%;
+    padding-right: 2%;
+    margin-top: 0;
+    padding-top: 0;
 }
 
-svg{
-    padding-top: 2%;
-    width: 7%;
+#airbnb{
+    width: 22%;
+}
+
+#booking{
+    width: 27%;
+}
+
+#vrbo{
+    width: 18%;
 }
 
 img{
-    padding-top: 2%;
-    width: 7%;
+    width: 25%;
     height: auto;
-    border-radius: 26%;
+}
+
+.tanglere{
+    margin: auto auto auto auto;
 }
 
 .tanglere a{
-    padding-left: 3%;
-    padding-right: 5%;
+    padding-left: 20%;
 }
 
 .tanglere svg {
-    width: 5%;
+    padding-top: 5%;
+    width: 15%;
+}*/
+
+.foot{
+    border: solid;
+    background-color:  #6BCEDD; /*
+    background-color: #f8ac85;*/
+    color: black;
+    position: fixed;
+    bottom: 0%;
+    display: grid;
+    grid-template-columns: 25% 32% 8%;
+    grid-gap: 14%;
+    height: 7.5%;
+    width: 100%;
+    padding: 0.2% 0% 0 7%;
+    margin: 0 0 0 0;
+    border: solid 0.1px rgba(119, 113, 113, 0.377);
+}
+
+h1{
+    font-size: 0.8vw;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold
+}
+
+.iLinks{
+    margin: auto auto 0 auto;
+    display: grid;
+    grid-template-columns: 10% 80%;
+    grid-gap: 5%;
+    font-size: 0.7vw;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+.iLinks img {
+    margin-left: 0;
+    width:100%;
+    border-radius: 5%;
+}
+
+.find{
+    margin: auto auto auto auto;
+}
+
+.find a{
+    padding-right: 2%;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#airbnb{
+    width: 22%;
+}
+
+#booking{
+    width: 27%;
+}
+
+#vrbo{
+    width: 18%;
+}
+
+img{
+    width: 25%;
+    height: auto;
+}
+
+.tanglere{
+    margin: auto auto auto auto;
+}
+
+.tanglere a{
+    padding-left: 20%;
+}
+
+.tanglere svg {
+    padding-top: 5%;
+    width: 15%;
 }

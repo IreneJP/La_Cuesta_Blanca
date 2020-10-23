@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {CalendarModule} from 'primeng/calendar';
+import { NgxPayPalModule } from 'ngx-paypal';
+import {MatDialogModule} from '@angular/material/dialog'
 
 //Component
 import { AppComponent } from './app.component';
@@ -53,7 +55,9 @@ export function translateFactory(provider:TranslateService){
     HttpClientModule,
     HttpClientJsonpModule,
     NgbModule,
-    CalendarModule
+    CalendarModule,
+    NgxPayPalModule,
+    MatDialogModule
   ],
   providers: [
     TranslateService,

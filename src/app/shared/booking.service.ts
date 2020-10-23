@@ -18,5 +18,9 @@ export class BookingService {
   addBooking(booking:Reservation){
     return this.http.post(this.url, booking)
   }
+  addDates(date:Date){
+    return this.http.post(this.url + "/date", date)
+  }
+
 
 }

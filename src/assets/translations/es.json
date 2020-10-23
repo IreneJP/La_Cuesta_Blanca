@@ -11,6 +11,9 @@
    "label.price": "Precio",
    "label.details" : "Información de la reserva",
    "label.close" : "Cerrar",
-   "label.save" : "Reservar"
+   "label.save" : "Reservar",
+   "label.confirmation" : "Confirmar la reserva",
+   "label.choosePayment" : "Elija el método de pago",
+   "label.creditCard" : "Tarjeta de crédito"
 
 }

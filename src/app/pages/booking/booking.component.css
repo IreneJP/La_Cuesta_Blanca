@@ -1,8 +1,9 @@
-body{
-    grid-template-columns: auto auto;
-    width: 100%;
-    padding: 0% 20% 3% 20%; 
-    background-color: white;
+h1{
+    /*font-family: 'Londrina Solid', cursive;*/
+    font-size: 5vw;
+    text-align: center;
+    color:#262626;
+    padding: 5% 0 3% 0;
 }
 
 label{
@@ -13,6 +14,8 @@ form{
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 2%;
+    width: 55%;
+    margin: auto auto auto auto;
 }
 
 .guests{
@@ -25,19 +28,14 @@ form{
 p-calendar{
     align-items: center;
     align-content: center;
+    width: auto;
 }
 
-.part2{
-margin: auto auto auto auto
+.part1, .part2{
+    width: 100%;
 }
 
-h1{
-    font-family: 'Londrina Solid', cursive;
-    font-size: 5vw;
-    text-align: center;
-    color:#262626;
-    padding: 8% 0 3% 0;
-}
+
 
 .booking{
     display: grid;
@@ -51,3 +49,124 @@ h1{
 button{
     width: 100%;
 }
+
+.type-payment{
+    display: inline-block;
+    border: 0.5px solid black;
+    border-radius: 4%;
+    padding: 5%;
+    margin: 5%;
+    width: 70%;
+    cursor: pointer;
+}
+
+.type-payment i{
+    font-size: 80px;
+}
+
+.type-payment p{
+ margin:0;
+ margin-top: 15px;
+ font-size: 24px;
+}
+
+.alert{
+    margin: 3% auto auto auto;
+    width: 80%;
+    font-size: 1vw;
+
+}
+
+
+.col-center {
+	margin: 0 auto;
+	float: none !important;
+}
+
+.carousel-item {
+	color: white;
+	font-size: 14px;
+    text-align: center;
+	overflow: hidden;
+    min-height: 250px;    
+    padding-top: 5%;
+}
+
+.carousel .testimonial {
+	padding: 0px 0 10px;
+}
+
+.carousel .overview b {
+    text-transform: uppercase;
+    color:#FF914D;
+}
+
+.carousel .carousel-control {
+	width: 10px;
+    height: 10px;
+    margin-top: -20px;
+    top: 50%;
+	background: none;
+}
+
+.carousel-control i {
+    font-size: 30px;
+	line-height: 22px;
+    position: absolute;
+    display: inline-block;
+	color: #FF914D;
+}
+
+
+.carousel-indicators li.active {	
+	background: #555;		
+	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+}
+
+.comments{
+    background-color:#262626;
+    margin-top: 5%;
+}
+
+@media only screen and (max-width: 600px) {
+    h1{
+        font-size: 6vw;
+        padding-top: 15%;
+    }
+
+    form{
+        grid-template-columns: 100%;
+        width: 90%;
+        margin: auto auto auto auto;
+    }
+
+    .part2{
+        padding-top: 5%;
+        text-align: center;
+    }
+
+    label, input, button, select{
+        font-size: 2.5vw;
+    }
+
+    .comments{
+        background-color:#262626;
+        margin-top:15%;
+    }
+    .carousel-item {
+        font-size: 2.5vw;
+    }
+
+    
+
+    .carousel-control i {
+        font-size: 10px;
+        line-height: 12px;
+        position: absolute;
+        display: inline-block;
+        color: #FF914D;
+    }
+
+
+}
+    

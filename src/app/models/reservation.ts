@@ -5,11 +5,12 @@ export class Reservation {
         public adultsNumber: number;
         public childrenNumber: number;
         public arrivalTime?: string;
-        public startDate: Date;
-        public endDate: Date;
+        public startDate: string;
+        public endDate: string;
         public price: number;
+        public reservationID: string
 
-    constructor (fullName: string, email: string, phone:number, adultsNumber:number, childrenNumber:number,  startDate: Date, endDate: Date, price: number, arrivalTime?: string,){
+    constructor (fullName: string, email: string, phone:number, adultsNumber:number, childrenNumber:number,  startDate:string, endDate:string, price: number, reservationID:string, arrivalTime?: string){
           
         this.fullName = fullName;
         this.email = email;
@@ -20,6 +21,7 @@ export class Reservation {
         this.startDate = startDate;
         this.endDate = endDate;
         this.price = price;
+        this.reservationID = reservationID
     }
 
 }

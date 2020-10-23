@@ -1,25 +1,29 @@
 body{
     margin-top: 0;
-    background-color: #EDF0F2;
-    padding-bottom: 10%;
+    margin-bottom: 20px;
 }
 
 h1{
-    font-family: 'Londrina Solid', cursive;
+    /*font-family: 'Londrina Solid', cursive;*/
     font-size: 5vw;
     text-align: center;
-    color:#0DB5CF;
+    color:black;
     padding: 5% 0 3% 0;
-    text-shadow: black 0.5px 0.5px 0.5px;
+}
+
+.otherInfo{
+    padding-top: 2%;
+    background-color:  #2626262f;
+    padding-bottom: 5%;
 }
 
 .garage{
     display: grid;
-    grid-template-columns: 60% 35%;
+    grid-template-columns: 35% 60%;
     grid-gap: 5%;
     margin: auto auto auto  auto;
     width: 60%;
-    text-align: justify;
+    text-align: left;
     font-size: 1vw;
 }
 
@@ -34,8 +38,9 @@ h1{
     grid-gap: 5%;
     margin: auto auto auto  auto;
     width: 60%;
-    text-align: justify;
+    text-align: left;
     font-size: 1vw;
+    padding-bottom: 7%;
 }
 
 .arrive iframe{
@@ -45,7 +50,7 @@ h1{
 
 
 h6{
-    font-family: 'Londrina Solid', cursive;
+    /*font-family: 'Londrina Solid', cursive;*/
     font-size: 1.5vw;
     margin: 5% 0 2% 0;
     text-align: center;
@@ -53,16 +58,69 @@ h6{
 }
 
 .description {
-    padding-top: 7%;
+    padding-top: 3%;
+    padding-bottom: 5%;
     width: 60%;
     margin: auto auto auto  auto;
-    text-align: justify;
+}
+
+.description p {
+    width: 90%;
+    margin: auto auto auto  auto;
+    text-align: left;
     font-size: 1vw;
 }
+
+.description img {
+    border: solid 1px white;
+}
+
+#description{
+    background-color: #262626;
+    color: white;
+}
+
 
 #myCarousel{
     width: 90%;
     margin: 5% auto auto  auto;
+}
+
+
+@media only screen and (max-width: 600px) {
+    h1{
+        font-size: 6vw;
+        padding-top: 15%;
+    }
+
+    h6,h4{
+        font-size: 4vw;
+    }
+
+    .garage{
+        grid-template-columns: auto;
+        width: 90%;
+        font-size: 3vw;
+        padding-bottom: 15%;
+    }
+
+    .arrive{
+        padding-top: 5%;
+        display: grid;
+        grid-template-columns: auto;
+        width: 90%;
+        font-size: 3vw;
+        padding-bottom: 15%;
+    }
+
+    .description {
+        width: 95%;
+        padding-bottom: 15%;
+    }
+
+    .description p{
+        font-size: 3vw;
+    }
 }
 
 

@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,  Validators } from '@angular/forms';
 import { Reservation } from 'src/app/models/reservation';
 import { BookingService } from 'src/app/shared/booking.service';
 import * as _ from 'lodash';
-import { find } from 'lodash-es';
-
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+declare var $ : any;
 
 @Component({
   selector: 'app-booking',
@@ -23,8 +23,10 @@ export class BookingComponent implements OnInit {
   public nuevoArray:Date[]
   public entrada:Date
   public salida:Date
- 
- 
+  public payPalConfig ? : IPayPalConfig;
+  public reservationID :string
+  public trial: Date[]
+
   constructor(private formBuilder: FormBuilder, private bookingService: BookingService) {
     
     this.adultsOptions = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -57,6 +59,7 @@ export class BookingComponent implements OnInit {
     }
 
     this.today = new Date();
+    
 
     this.formBooking = this.formBuilder.group({
       fullName: new FormControl('', Validators.required),
@@ -72,77 +75,37 @@ export class BookingComponent implements OnInit {
 
   }
 
-  
   getDaysArray(start, end) {
     for(var arr=[],dt=new Date(start); dt<=end; dt.setDate(dt.getDate()+1)){
         arr.push(new Date(dt));
     }
     return arr;
-};
-/*
-  getBooking(){
-    let entrada
-    let salida
-    let lodash = require("lodash")
-    
-    this.bookingService.getBooking().subscribe((data:any[]) =>{
-      //console.log(data)
-      for(let i= 0; i<= data.length; i++ ){
-      entrada = new Date(data[i].startDate)
-      salida = new Date(data[i].endDate)
-      //console.log( "quieroEntrada",entrada)
-      //console.log( "quieroSalida",salida)
+  };
 
-      //this.bookings = [entrada,salida]
-      //console.log("bookings",this.bookings)
-
-        function getDaysArray(entrada, salida) {
-          for(var arr=[],dt=new Date(entrada); dt<=salida; dt.setDate(dt.getDate()+1)){
-              arr.push(new Date(dt));
-          }
-          return arr;
-        }
-        this.nuevoArray = lodash.concat(getDaysArray(entrada,salida),getDaysArray(entrada,salida)); 
-        this.nuevoArray = lodash.concat(getDaysArray(entrada,salida))
-        console.log("1", lodash.concat(getDaysArray(entrada,salida),getDaysArray(entrada,salida)))
-        console.log("2",lodash.concat(getDaysArray(entrada,salida)))  
-          }
-      }) 
-          
-    }*/
     getBooking(){
-      
-      let suma =  new Array
-      
-      this.bookingService.getBooking().subscribe((data:any[]) =>{
-        console.log(data)
-        for(let i= 0; i<= data.length; i++ ){
-       this.entrada = new Date(data[i].startDate)
-        this.salida = new Date(data[i].endDate)
-   
-        function getDaysArray(entrada, salida) {
-          for(var arr=[],dt=new Date(entrada); dt<=salida; dt.setDate(dt.getDate()+1)){
-              arr.push(new Date(dt));
-          }
-          return arr;
-        }
-                };
+      let entrada
+      let salida
      
-        })   
-       
-   console.log(this.entrada,this.salida)
-      }
+      this.nuevoArray = []
+      this.bookingService.getBooking().subscribe((data:any[]) =>{
+        for(let i= 0; i<= data.length; i++ ){
+           entrada= new Date(data[i].startDate)
+           salida = new Date(data[i].endDate)
+           this.nuevoArray = _.concat(this.nuevoArray,this.getDaysArray(entrada,salida))
+           console.log(this.nuevoArray)
+        }
+        }) 
+    }
 
-   
   calculatePrice(){
     let start = this.formBooking.value.date[0].getDate()
     let end = this.formBooking.value.date[1].getDate()
-    
+    //Resto de días 180
     if(end-start == 1){
       this.price= "Selecciona mínimo dos noches"
-       //si es un finde 250/noche
+       //si es un finde 225/noche
       }else if ((end-start<4) && this.formBooking.value.date[0].getDay() == 5 && this.formBooking.value.date[1].getDay() == 0 ){
-        this.price = 250*(end-start)
+        this.price = 225*(end-start)
         //Si son menos de 4 noches 225/noche
         }else if  (end-start<4){
           this.price = 225*(end-start)
@@ -156,19 +119,10 @@ export class BookingComponent implements OnInit {
                 }  else if(end-start>=15){
                   this.price = 150*(end-start)
                   }
-
   }
 
-  addBooking(){
-    let booking = new Reservation(this.formBooking.value.fullName, this.formBooking.value.email, this.formBooking.value.phone, this.formBooking.value.adultsNumber, this.formBooking.value.childrenNumber, this.formBooking.value.date[0], this.formBooking.value.date[1], this.price, this.formBooking.value.arrivalTime)
-    
 
-      this.bookingService.addBooking(booking).subscribe((data) =>{
-        
-        console.log("Reserva realizada con la siguiente info " + data)
-      })      
-  }
-
+ 
 
   get fullName(){
     return this.formBooking.get('fullName')
@@ -189,8 +143,79 @@ export class BookingComponent implements OnInit {
     return this.formBooking.get('date')
   }
 
+  initConfig(): void {     
+     this.payPalConfig = {
+     currency: 'EUR',
+     createOrderOnClient: (data) => <ICreateOrderRequest>{
+       intent: 'CAPTURE',
+       purchase_units: [{
+           amount: {
+             currency_code: 'EUR',
+             value: this.price,
+             breakdown: {
+               item_total: {
+                 currency_code: 'EUR',
+                 value: this.price
+               }
+             }
+           },
+           items: [{
+               name: 'La Cuesta Blanca -  Casa Rural',
+               quantity: '1',
+               unit_amount: {
+                 currency_code: 'EUR',
+                 value: this.price,
+               },
+             }]
+         }]
+     },
+     advanced: {
+       commit: 'true'
+     },
+     style: {
+       label: 'paypal',
+       layout: 'vertical'
+     },
+     onApprove: (data, actions) => {
+       console.log('onApprove - transaction was approved, but not authorized', data, actions);
+       actions.order.get().then(details => {
+         console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+     },
+     onClientAuthorization: (data) => {
+       console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+       this.reservationID = data.id
+       console.log( data.id)
+       $('#paymentModal').modal('hide');
+       $('#modelId').modal('hide');
+       $('#paymentID').modal('show');
+
+       
+        let booking = new Reservation(this.formBooking.value.fullName, this.formBooking.value.email, this.formBooking.value.phone, this.formBooking.value.adultsNumber, this.formBooking.value.childrenNumber, this.formBooking.value.date[0], this.formBooking.value.date[1], this.price, this.reservationID, this.formBooking.value.arrivalTime)
+        
+        this.bookingService.addBooking(booking).subscribe(data =>{
+          this.formBooking.reset()
+          this.getBooking()
+        }) 
+      
+
+     },
+     onCancel: (data, actions) => {
+       console.log('OnCancel', data, actions);
+     },
+     onError: err => {
+       console.log('OnError', err);
+     },
+     onClick: (data, actions) => {
+       console.log('onClick', data, actions);
+     },
+    };
+   }
+  
   ngOnInit(): void {
    this.getBooking()
+   this.initConfig();
   }
-
 }
+
+

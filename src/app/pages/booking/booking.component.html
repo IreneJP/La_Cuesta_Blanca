@@ -1,137 +1,245 @@
 <app-nav-bar></app-nav-bar>
 
-<body>
+<div class="reservartion">
     <h1>Reservas</h1>
     <div class="row" id="add-booking">
         <div class="col-12">
-            <form [formGroup] = "formBooking" (ngSubmit)="addBooking()">
-            <div class="part1">
-                <div class="row form-group">
-                    <div class="col-12 mt-2">
-                        <label for="fullName">{{'label.name' | translate}}</label>
-                        <input type="text" id="fullName" class="form-control" formControlName="fullName" [ngClass]="{'is-valid': fullName.dirty && !fullName.invalid, 'is-invalid': fullName.dirty && fullName.invalid}">
-                    </div>
-                    <div class="invalid-feedback">
-                        <span *ngIf="fullName.errors?.required">Campo requerido</span>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-12 mt-2">
-                        <label for="email">{{'label.email' | translate}}</label>
-                        <input type="email" class="form-control" formControlName="email" [ngClass]="{'is-valid': email.dirty && !email.invalid, 'is-invalid': email.touched && email.invalid}">
-                    </div>
-                    <div class="invalid-feedback">
-                        <span *ngIf="email.errors?.required">Campo requerido</span>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-12 mt-2">
-                        <label for="phone">{{'label.phone' | translate}}</label>
-                        <input type="number"  id="phone" class="form-control" formControlName="phone" [ngClass]="{'is-valid': phone.dirty && !phone.invalid, 'is-invalid': phone.touched && phone.invalid}">
-                    </div>
-                    <div class="invalid-feedback">
-                        <span *ngIf="phone.errors?.required">Campo requerido</span>
+            <form [formGroup] = "formBooking" (ngSubmit)="initConfig()">
+                <div class="part2">
+                    <div class="row form-group">
+                        <div class="col-12">
+                            <label for="date">{{'label.calendar' | translate}}</label>
+                            <br>
+                            <p-calendar  
+                                (click)="calculatePrice()"
+                                inline = "true"
+                                yearRange="2020:2021"
+                                [locale]="locale"
+                                [readonlyInput] = "true"
+                                [disabledDates]= "nuevoArray"
+                                inputStyleClass="form-control is-valid"
+                                selectionMode = "range"
+                                id="date"
+                                [minDate] = "today"
+                                formControlName="date">                    
+                            </p-calendar>
+                        </div>
                     </div>
                 </div>
-                <div class="guests">
+                <div class="part1">
                     <div class="row form-group">
                         <div class="col-12 mt-2">
-                            <label for="adultsNumber">{{'label.adultGuest' | translate}}</label>
-                            <select  id="adultsNumber" class="custom-select" formControlName="adultsNumber">
-                                <option [value]="option" *ngFor= "let option of adultsOptions;">{{option}}</option>
-                            </select>
+                            <label for="fullName">{{'label.name' | translate}}</label>
+                            <input type="text" id="fullName" class="form-control" formControlName="fullName" [ngClass]="{'is-valid': fullName.dirty && !fullName.invalid, 'is-invalid': fullName.dirty && fullName.invalid}">
+                        </div>
+                        <div class="invalid-feedback">
+                            <span *ngIf="fullName.errors?.required">Campo requerido</span>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-12 mt-2">
-                            <label for="childrenNumber">{{'label.childGuest' | translate}}</label>
-                            <select  id="childrenNumber" class="custom-select" formControlName="childrenNumber">
-                                <option [value]="option" *ngFor= "let option of childrenOptions;">{{option}}</option>
-                            </select>
+                            <label for="email">{{'label.email' | translate}}</label>
+                            <input type="email" class="form-control" formControlName="email" [ngClass]="{'is-valid': email.dirty && !email.invalid, 'is-invalid': email.touched && email.invalid}">
+                        </div>
+                        <div class="invalid-feedback">
+                            <span *ngIf="email.errors?.required">Campo requerido</span>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-12 mt-2">
-                            <label for="arrivalTime">{{'label.arrivalTime' | translate}}</label>
-                            <input type="text"  id="arrivalTime" class="form-control" formControlName="arrivalTime">
+                            <label for="phone">{{'label.phone' | translate}}</label>
+                            <input type="number"  id="phone" class="form-control" formControlName="phone" [ngClass]="{'is-valid': phone.dirty && !phone.invalid, 'is-invalid': phone.touched && phone.invalid}">
+                        </div>
+                        <div class="invalid-feedback">
+                            <span *ngIf="phone.errors?.required">Campo requerido</span>
                         </div>
                     </div>
-                </div>
-                <div class="booking">
-                    <div>
-                        <label for="price" id="price">{{'label.price' | translate}}: {{price}} <i class="fas fa-euro-sign"></i></label>
-                    </div>
-                    <div>
-                        <div class="button">
-                            <button [disabled]="formBooking.invalid" data-toggle="modal" data-target="#modelId" class="btn btn-dark" >{{'label.save' | translate}}</button>
+                    <div class="guests">
+                        <div class="row form-group">
+                            <div class="col-12 mt-2">
+                                <label for="adultsNumber">{{'label.adultGuest' | translate}}</label>
+                                <select  id="adultsNumber" class="custom-select" formControlName="adultsNumber">
+                                    <option [value]="option" *ngFor= "let option of adultsOptions;">{{option}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 mt-2">
+                                <label for="childrenNumber">{{'label.childGuest' | translate}}</label>
+                                <select  id="childrenNumber" class="custom-select" formControlName="childrenNumber">
+                                    <option [value]="option" *ngFor= "let option of childrenOptions;">{{option}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-12 mt-2">
+                                <label for="arrivalTime">{{'label.arrivalTime' | translate}}</label>
+                                <input type="text"  id="arrivalTime" class="form-control" formControlName="arrivalTime">
+                            </div>
                         </div>
                     </div>
-               </div>
-            </div>
-            
-
-            <div class="part2">
-                <div class="row form-group">
-                    <div class="col-12 mt-6">
-                        <label for="date">{{'label.calendar' | translate}}</label>
-                        <br>
-                        <p-calendar  
-                            (click)="calculatePrice()"
-                            inline = "true"
-                            yearRange="2020:2021"
-                            [locale]="locale" 
-                            dateFormat="dd/mm/yy" 
-                            [readonlyInput] = "true"
-                            [disabledDates]= "nuevoArray"
-                            inputStyleClass="form-control is-valid"
-                            selectionMode = "range"
-                            id="date"
-                            [minDate] = "today"
-                            formControlName="date">                    
-                        </p-calendar>
-                    </div>
+                    <div class="booking">
+                        <div>
+                            <label for="price" id="price">{{'label.price' | translate}}: {{price}} <i class="fas fa-euro-sign"></i></label>
+                        </div>
+                        <div>
+                            <div class="button">
+                                <button [disabled]="formBooking.invalid" data-toggle="modal" data-target="#modelId" class="btn btn-dark" >{{'label.save' | translate}}</button>
+                            </div>
+                        </div>
                 </div>
-            </div>
-
-             <!--Modal -->
-     
-
-      <div class="modal" tabindex="-1" role="dialog" id="modelId">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">{{'label.details'| translate}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>{{'label.name' | translate}}: {{this.formBooking.value.fullName}}</p>
-              <p>{{'label.email' | translate}}: {{this.formBooking.value.email}}</p>
-              <p>{{'label.phone' | translate}}: {{this.formBooking.value.phone}}</p>
-              <p>{{'label.adultGuest' | translate}}: {{this.formBooking.value.adultsNumber}}</p>
-              <p>{{'label.childGuest' | translate}}: {{this.formBooking.value.childrenNumber}}</p>
-              <p>{{'label.startDate' | translate}}: {{this.formBooking.value.date[0]}}</p>
-              <p>{{'label.endDate' | translate}}: {{this.formBooking.value.date[1]}}</p>
-              <p>{{'label.arrivalTime' | translate}}: {{this.formBooking.value.arrivalTime}}</p>
-              <p>{{'label.price' | translate}}: {{price}} €</p>
-            </div>
-            <div class="modal-footer">
-            
-              <button type="button" class="btn btn-dark" type="submit">{{'label.save'| translate}}</button>
-            </div>
-          </div>
-        </div>
-      </div>
+                </div>
             </form>
         </div>
     </div>
-
-
-
-     
-
+</div>
+<div class="comments">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-center m-auto">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Carousel -->
+                    <div class="carousel-inner">
+                        <div class="item carousel-item active">
+                            <p class="overview"><b>Teresa</b></p>
+                            <p class="testimonial">“Instalaciones en perfecto estado, todo super limpio, cómoda y confortable. Equipada al detalle. 100% recomendable.”</p>
+                            <p class="client-review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="item carousel-item">
+                            <p class="overview"><b>Alberto</b></p>
+                            <p class="testimonial">“La cercanía del dueño y las facilidades recibidas en todos los aspectos”</p>
+                            <p class="client-review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </p>
+                        </div>
+                        <div class="item carousel-item">
+                            <p class="overview"><b>Maria</b></p>
+                            <p class="testimonial">“Todo bien, el anfitrión pendiente de los detalles. La casa muy cómoda, jardín con barbacoa.”</p>
+                            <p class="client-review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </p>
+                        </div>
+                        <div class="item carousel-item">
+                            <p class="overview"><b>Luis</b></p>
+                            <p class="testimonial">“A destacar la amabilidad y disponibilidad del dueño. Cada detalle estaba muy cuidado. La casa tiene todas las comodidades para una estancia confortable. Ideal para los niños.”</p>
+                            <p class="client-review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </p>
+                        </div>                        
+                        <div class="item carousel-item">
+                            <p class="overview"><b>Idoia</b></p>
+                            <p class="testimonial">“La casa estaba totalmente equipada. El patio con la barbacoa y la pérgola es ideal para pasar un rato agradable al aire libre. Tiene garaje cerrado para el coche. Todo realmente genial.”</p>
+                            <p class="client-review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Carousel Controls -->
+                    <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
  
-</body>
+
+    
+             <!--Modales -->
+     
+            <!--Información de la reserva -->
+             <div class="modal" tabindex="-1" role="dialog" id="modelId">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    <div class="modal-header">
+                      <h5 class="modal-title  text-center">{{'label.details'| translate}}</h5>
+                      
+                    </div>
+                    <div class="modal-body">
+                      <p>{{'label.name' | translate}}: {{this.formBooking.value.fullName}}</p>
+                      <p>{{'label.email' | translate}}: {{this.formBooking.value.email}}</p>
+                      <p>{{'label.phone' | translate}}: {{this.formBooking.value.phone}}</p>
+                      <p>{{'label.adultGuest' | translate}}: {{this.formBooking.value.adultsNumber}}</p>
+                      <p>{{'label.childGuest' | translate}}: {{this.formBooking.value.childrenNumber}}</p>
+                      <p>{{'label.startDate' | translate}}: {{this.formBooking.value.date[0]| date:'shortDate'}}</p>
+                      <p>{{'label.endDate' | translate}}: {{this.formBooking.value.date[1] | date:'shortDate'}}</p>
+                      <p>{{'label.arrivalTime' | translate}}: {{this.formBooking.value.arrivalTime}}</p>
+                      <p>{{'label.price' | translate}}: {{price}} €</p>
+                    </div>
+                    <div class="modal-footer">
+                    
+                      <button type="button" class="btn btn-dark" type="submit" data-toggle="modal" data-target="#paymentModal">{{'label.confirmation'| translate}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+               <!-- Método de pago -->
+              <div class="modal" tabindex="-1" role="dialog" id="paymentModal">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">{{'label.choosePayment' | translate}}</h5>
+                    </div>
+                    <div class="alert alert-info text-center" role="alert">
+                       <a href="#" class="alert-link">Precio total de la reserva:  {{price}}  <i class="fas fa-euro-sign"></i></a>
+                      </div>
+                    <div class="modal-body text-center">
+                        <div class="type-payment">
+                            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+              </div>
+
+               <!-- Reserva realizada con éxito -->
+                <div class="modal" tabindex="-1" id="paymentID">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Pago realizado con éxito</h5>
+                        </div>
+                        <div class="modal-body">
+                            El pago se ha efectuado correctamente. <br>
+                            El identificador de su reserva es: <p class="alert-link">{{reservationID}}</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
 <app-footer></app-footer>
 
